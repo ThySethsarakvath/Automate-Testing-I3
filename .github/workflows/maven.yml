@@ -25,7 +25,7 @@ jobs:
       # Added LoginTest (Lab 1) and ApiTest (Lab 2)
       run: mvn test -Dtest=LoginTest,ApiTest
 
-    - name: Task: Publish Test Results
+    - name: Task Publish Test Results
       if: always() 
       uses: actions/upload-artifact@v4
       with:

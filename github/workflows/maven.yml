@@ -1,0 +1,42 @@
+name: Lab 03 - CI/CD Integration
+
+on:
+  push:
+    branches: [ "lab03" ]
+  pull_request:
+    branches: [ "lab03" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 25
+      uses: actions/setup-java@v4
+      with:
+        java-version: '25'
+        distribution: 'oracle'
+        cache: maven
+
+    - name: Run All Lab Tests (Lab 1 & Lab 2)
+      # Added LoginTest (Lab 1) and ApiTest (Lab 2)
+      run: mvn test -Dtest=LoginTest,ApiTest
+
+    - name: Task: Publish Test Results
+      if: always() 
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: target/surefire-reports/
+
+    - name: Generate Summary Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Automation Test Summary
+        # This path catches results from both Lab 1 and Lab 2
+        path: target/surefire-reports/junitreports/TEST-*.xml
+        reporter: java-junit

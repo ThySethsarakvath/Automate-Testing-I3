@@ -2,6 +2,7 @@ package ex1.test;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -13,7 +14,13 @@ public class LoginTest {
 
     @BeforeMethod
     public void setup() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+        driver = new ChromeDriver(options);
         driver.get("https://www.saucedemo.com");
         loginPage = new LoginPage(driver);
     }
@@ -26,9 +33,9 @@ public class LoginTest {
 
     @DataProvider(name = "loginData")
     public Object[][] getData() {
-        return new Object[][]{
-            {"standard_user", "secret_sauce"},
-            {"problem_user", "secret_sauce"}
+        return new Object[][] {
+                { "standard_user", "secret_sauce" },
+                { "problem_user", "secret_sauce" }
         };
     }
 

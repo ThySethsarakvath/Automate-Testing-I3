@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-05-01T11:21:57 GMT+07:00" name="Surefire suite" finished-at="2026-05-01T11:22:00 GMT+07:00" duration-ms="3142">
+    <groups>
+    </groups>
+    <test started-at="2026-05-01T11:21:57 GMT+07:00" name="Surefire test" finished-at="2026-05-01T11:22:00 GMT+07:00" duration-ms="3142">
+      <class name="ex2.test.ApiTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:ex2.test.ApiTest@67e2d983]" started-at="2026-05-01T11:21:57 GMT+07:00" name="setup" finished-at="2026-05-01T11:21:57 GMT+07:00" duration-ms="458" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="testGetUserAndValidateSchema()[pri:0, instance:ex2.test.ApiTest@67e2d983]" started-at="2026-05-01T11:21:57 GMT+07:00" name="testGetUserAndValidateSchema" finished-at="2026-05-01T11:22:00 GMT+07:00" duration-ms="2652" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetUserAndValidateSchema -->
+      </class> <!-- ex2.test.ApiTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

@@ -28,9 +28,7 @@ jobs:
     - name: Debug Directory Structure
       run: ls -R
     - name: Run Scenario 1 and Scenario 2 Tests
-      run: |
-        mvn test -Dtest=ex1.CalculatorTest,ex2.BankAccountTest -Dmaven.test.failure.ignore=true
-      working-directory: ./Lab02/lab02-java
+      run: mvn test -Dtest=ex1.CalculatorTest,ex2.BankAccountTest -Dmaven.test.failure.ignore=true
 
     - name: Upload Surefire Reports
       # Capturing artifacts as discussed in Part 4 of the lecture
@@ -38,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: lab02-test-reports
-        path: ./Lab02/lab02-java/target/surefire-reports/
+        path: target/surefire-reports/
 
     - name: Publish Test Summary
       # Providing actionable insights through reporting
@@ -47,5 +45,5 @@ jobs:
       with:
         name: Scenario Analysis Report
         # Path updated to match your nested Maven structure
-        path: ./Lab02/lab02-java/target/surefire-reports/TEST-*.xml
+        path: target/surefire-reports/TEST-*.xml
         reporter: java-junit

@@ -25,7 +25,8 @@ jobs:
         java-version: '25'
         distribution: 'oracle'
         cache: maven
-
+    - name: Debug Directory Structure
+      run: ls -R
     - name: Run Scenario 1 and Scenario 2 Tests
       run: |
         mvn test -Dtest=ex1.CalculatorTest,ex2.BankAccountTest -Dmaven.test.failure.ignore=true

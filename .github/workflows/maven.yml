@@ -1,0 +1,50 @@
+name: Lab 02 - Automation Frameworks CI
+
+on:
+  push:
+    branches: ["lab02" ]
+  pull_request:
+    branches: ["lab02" ]
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 25
+      uses: actions/setup-java@v4
+      with:
+        java-version: '25'
+        distribution: 'oracle'
+        cache: maven
+
+    - name: Run Scenario 1 and Scenario 2 Tests
+      run: |
+        mvn test -Dtest=ex1.CalculatorTest,ex2.BankAccountTest -Dmaven.test.failure.ignore=true
+      working-directory: Lab02/lab02-java
+
+    - name: Upload Surefire Reports
+      # Capturing artifacts as discussed in Part 4 of the lecture
+      if: always() 
+      uses: actions/upload-artifact@v4
+      with:
+        name: lab02-test-reports
+        path: Lab02/lab02-java/target/surefire-reports/
+
+    - name: Publish Test Summary
+      # Providing actionable insights through reporting
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Scenario Analysis Report
+        # Path updated to match your nested Maven structure
+        path: Lab02/lab02-java/target/surefire-reports/TEST-*.xml
+        reporter: java-junit

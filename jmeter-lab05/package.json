@@ -1,0 +1,14 @@
+{
+  "name": "jmeter-lab05-exercise-a",
+  "version": "1.0.0",
+  "description": "JMeter load test: 50 users, 30s ramp-up, cache + queue proxy for jsonplaceholder",
+  "private": true,
+  "scripts": {
+    "start": "node api.js",
+    "jmeter:install": "node scripts/install-jmeter.js",
+    "jmeter:run": "node scripts/run-jmeter.js",
+    "jmeter:report": "node scripts/report-jmeter.js",
+    "test": "npm run jmeter:run"
+  },
+  "devDependencies": {}
+}

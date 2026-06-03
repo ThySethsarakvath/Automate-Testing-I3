@@ -124,13 +124,13 @@ The simulation ran successfully for **154 seconds**, handling sustained volumetr
 
 #### Console Screenshot Placeholder:
 
-![Project Screenshot](assets\results1.png)
+![Project Screenshot](assets/results1.png)
 ```
 .
 .
 .
 ```
-![Project Screenshot](assets\results2.png)
+![Project Screenshot](assets/results2.png)
 
 
 ---
@@ -160,7 +160,7 @@ Gatling compiled all logged telemetry parameters into an integrated, interactive
 
 #### Report Screenshot Placeholder:
 
-![Project Screenshot](assets\report.png)
+![Project Screenshot](assets/report.png)
 
 📥 **Click here to launch the interactive workspace:** 👉 [Open Interactive Gatling HTML Report](./target/gatling/computerdatabasesimulation-20260603062147773/index.html)
 

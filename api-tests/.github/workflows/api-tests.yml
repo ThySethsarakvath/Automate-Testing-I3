@@ -1,0 +1,54 @@
+name: API Regression Automation Suite
+
+on:
+  push:
+    branches: [ main, master, lab07 ]
+  pull_request:
+    branches: [ main, master, lab07 ]
+
+jobs:
+  api-test-execution:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone Repository codebase
+      uses: actions/checkout@v4
+
+    - name: Provision Node.js Active Runtime Environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+        cache-dependency-path: |
+          shop-api/package-lock.json
+          api-tests/package-lock.json
+
+    - name: Set up Java Environment Runtime for Allure Report Generation
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Install Project Dependencies across Project Substructures
+      run: |
+        cd shop-api && npm ci
+        cd ../api-tests && npm ci
+
+    - name: Execute Automated Playwright Spec Modules
+      run: |
+        cd api-tests
+        npx playwright test
+
+    - name: Parse Raw Telemetry Artifacts and Render Allure Static Reports
+      if: always()
+      run: |
+        cd api-tests
+        npm run report:generate
+
+    - name: Upload Static Interactive Web Report Content to Storage Repositories
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: Interactive-Allure-API-Report
+        path: api-tests/allure-report/
+        retention-days: 10

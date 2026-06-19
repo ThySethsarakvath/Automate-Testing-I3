@@ -2,9 +2,9 @@ name: API Regression Automation Suite
 
 on:
   push:
-    branches: [ main, master, lab07 ]
+    branches: [ lab07 ]
   pull_request:
-    branches: [ main, master, lab07 ]
+    branches: [ lab07 ]
 
 jobs:
   api-test-execution:
